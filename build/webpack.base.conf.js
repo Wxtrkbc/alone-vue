@@ -52,7 +52,16 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      // {
+      //   test: /\.stylus$/,
+      //   loader: 'style!css!postcss!stylus',
+      //   exclude: /node_modules/
+      // },
+      // {
+      //   test: /\.json$/,
+      //   loader: 'json'
+      // },
     ]
   }
 }
