@@ -1,18 +1,25 @@
 
 <template lang="pug">
   #app
-    img(src='./assets/logo.png')
-
-    router-view
+    .main-container
+      main-header
+      router-view.router-view
+      main-footer
 </template>
 
 
-
 <script>
-export default {
-  name: 'app'
-}
+  import Header from './components/layout/Header.vue'
+
+  export default {
+    name: 'app',
+    data:() => {},
+    components:{
+      MainHeader:Header,
+    }
+  }
 </script>
+
 
 <style lang="stylus">
 #app
