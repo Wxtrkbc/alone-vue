@@ -4,7 +4,6 @@
       .header-left
         icon(name="camera" scale="2")
         span Alone
-        router-link(to="/")  go to root
       .header-center
       .header-right
 
