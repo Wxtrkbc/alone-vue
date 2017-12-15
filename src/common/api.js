@@ -4,7 +4,8 @@ var $ = {}
 
 $.ajax = function(url, options){
 
-	new Promise(function(resolve, reject){
+	return new Promise(function(resolve, reject){
+
 		if (window.XMLHttpRequest){
 			var xhr = new XMLHttpRequest();
 		} else {
@@ -60,7 +61,7 @@ $.ajax = function(url, options){
 
 
 $.get = (url, pararms, auth=false) => {
-	$.ajax(url, {
+	return $.ajax(url, {
 		method: 'get',
 		pararms: pararms,
 		auth: auth
@@ -68,7 +69,7 @@ $.get = (url, pararms, auth=false) => {
 }
 
 $.post = (url, body, auth=true) => {
-	$.ajax(url, {
+	return $.ajax(url, {
 		method: 'post',
 		body: body,
 		auth: auth
@@ -76,7 +77,7 @@ $.post = (url, body, auth=true) => {
 }
 
 $.put = (url, body, auth=true) => {
-	$.ajax(url, {
+	return $.ajax(url, {
 		method: 'put',
 		body: body,
 		auth: auth
@@ -84,7 +85,7 @@ $.put = (url, body, auth=true) => {
 }
 
 $.patch = (url, body, auth=true) => {
-	$.ajax(url, {
+	return $.ajax(url, {
 		method: 'patch',
 		body: body,
 		auth: auth
@@ -92,7 +93,7 @@ $.patch = (url, body, auth=true) => {
 }
 
 $.delete = (url, body, auth=true) => {
-	$.ajax(url, {
+	return $.ajax(url, {
 		method: 'delete',
 		body: body,
 		auth: auth

@@ -1,7 +1,3 @@
-const userInfo = state => state.userInfo
-const isLogin = state => state.isLogin
 
-export default {
-	userInfo, 
-	isLogin
-}
+export const userInfo = state => state.userInfo
+export const isLogin = state => state.isLogin

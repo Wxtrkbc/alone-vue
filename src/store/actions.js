@@ -1,15 +1,11 @@
 
 import * as fetch from '../common/fetch.js'
-
-const actions = {
-	login ({ commit, state }, form) {
-		fetch.login(form).then(function({status, data}){
-			commit 'UPDATE_USERINFO', data
-		}, )
-	}
-}
+import * as types from './mutation-types'
 
 
-export default {
-	actions,
+export const login = ({ commit, state }, form) => {
+	console.log(fetch.login(form))
+	fetch.login(form).then(function({ status, data }){
+		commit(types.UPDATE_USERINFO, data)
+	})
 }

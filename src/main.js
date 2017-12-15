@@ -7,6 +7,7 @@ import router from './router'
 import 'vue-awesome/icons'
 // import 'font-awesome/scss/font-awesome.scss';
 import Icon from 'vue-awesome/components/Icon'
+import store from './store'
 
 
 Vue.config.productionTip = false
@@ -15,6 +16,7 @@ Vue.component('icon', Icon)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: {

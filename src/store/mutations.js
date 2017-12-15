@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 
-const mutations = {
+export default {
 	[types.UPDATE_USERINFO] (state, userInfo) {
 		state.userInfo = userInfo
 	},
@@ -8,8 +8,4 @@ const mutations = {
 	[types.UPDATE_LOGIN_STATUS] (state, loginStatus) {
 		state.isLogin = loginStatus
 	}
-}
-
-export dafult {
-	mutations,
 }
