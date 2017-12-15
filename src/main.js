@@ -8,10 +8,14 @@ import 'vue-awesome/icons'
 // import 'font-awesome/scss/font-awesome.scss';
 import Icon from 'vue-awesome/components/Icon'
 import store from './store'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 
 Vue.config.productionTip = false
 Vue.component('icon', Icon)
+Vue.use(ElementUI)
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -21,5 +25,6 @@ new Vue({
   template: '<App/>',
   components: {
     App,
-  }
+  },
+  render: h => h(App)
 })
