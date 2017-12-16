@@ -13,9 +13,18 @@
   import Header from './components/layout/Header.vue'
   import Footer from './components/layout/Footer.vue'
   import Login from './components/user/Login.vue'
+  import eventBus from './common/eventbus'
   
   export default {
     name: 'app',
+
+    created(){
+      eventBus.$on('successMessage', (message) =>this.$message(message)),
+
+      eventBus.$on('errorMessage', (message) => this.$message.error(message))
+
+    },
+
     data:() => {},
     components:{
       MainHeader: Header,
