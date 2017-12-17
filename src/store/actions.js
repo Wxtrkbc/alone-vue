@@ -8,7 +8,8 @@ export const login = ({ commit, state }, form) => {
 	fetch.login(form)
 	.then(function({ status, data }){
 		commit(types.UPDATE_USERINFO, data);
-	}).catch(function(status, data){
+	})
+	.catch(function(status, data){
 		var message;
 		if (status == 401){
 			message = "username or password error!";
