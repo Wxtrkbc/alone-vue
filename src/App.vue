@@ -27,6 +27,9 @@
 
 
 <style lang="stylus">
+  body
+    margin: 0px
+    background-color: #fafafa
   .main-container
     display: flex
     flex-direction column

@@ -1,21 +1,22 @@
 <template lang="pug">
 	.login
+		slider
 		.login-body
-			.login-content
+			.login-content(class="_box")
 				h1 Alone
 				el-form(ref="form", :model="loginForm")
 					el-form-item
-						el-input(v-model="loginForm.name" placeholder="Username")
+						el-input(v-model="loginForm.name" placeholder="Username or phone number")
 					el-form-item
 						el-input(type="password" v-model="loginForm.password" placeholder="Password")
 					el-form-item
-						el-button(@click="submit(loginForm)" type="primary") Login
+						el-button(@click="submit(loginForm)" type="primary") Log in
 					el-form-item
-						el-button(type="text") Forget password?
+						el-button(type="text") Forgot password?
 
-		.login-footer
-			p No account?
-				a register
+			.login-footer(class="_box")
+				p Don't have an account?
+					a Sign up
 
 
 </template>
@@ -24,6 +25,7 @@
 
 <script>
 	import { mapActions } from 'vuex'
+	import Slider from './Slider'
 
 	export default {
 
@@ -35,6 +37,9 @@
 				}
 			}
 		},
+		components:{
+	    Slider: Slider,
+  	},
 
 		methods: {
 			...mapActions([
@@ -52,26 +57,33 @@
 
 <style lang="stylus">
 	.login
-		.login-body, .login-footer
-			background-color: #fff
-			border: 1px solid #e6e6e6
-			border-radius: 1px
-			width: 340px
+		display: flex
+		margin: 80px auto 0
+
+		._box
+				background-color: #fff
+				border: 1px solid #e6e6e6
+				border-radius: 1px
+				width: 340px
+		.login-body
+			 margin-top: 100px	
 			.login-content
-				width: 240px
-				margin: 0 auto
 				h1	
 					font-family:"Trebuchet MS", Arial, Helvetica, sans-serif
 					text-align: center
-					width: 240px	
-				.el-button
+				.el-form
 					width: 240px
+					margin: 0 auto
+					.el-form-item
+						.el-button
+							width: 240px
 
-		.login-footer
-			margin: 20px 0
-			p
-				text-align: center
-				a
-					margin-left: 5px 
+
+			.login-footer
+				margin: 20px 0
+				p
+					text-align: center
+					a
+						margin-left: 5px 
 
 </style>
