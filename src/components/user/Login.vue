@@ -1,9 +1,9 @@
 <template lang="pug">
   .login
     .login-body
-      .login-content(class="_box")
-        h1 Alone
-        el-form(ref="form", :model="loginForm")
+      .login-content(class="account-border")
+        h1(class="logo") Alone
+        el-form(ref="form", :model="loginForm", class="account-form")
           el-form-item
             el-input(v-model="loginForm.name" placeholder="Username or phone number")
           el-form-item
@@ -13,7 +13,7 @@
           el-form-item
             el-button(type="text") Forgot password?
 
-      .login-footer(class="_box")
+      .login-footer(class="account-border account-footer")
         p Don't have an account?
           router-link(to="/account/register") Sign up
 
@@ -50,31 +50,9 @@
 
 
 <style lang="stylus">
+    @import "../../common/account.styl"
+
     .login-body
-      margin-top: 100px
-
-    ._box
-      background-color: #fff
-      border: 1px solid #e6e6e6
-      border-radius: 1px
-      width: 340px
-
-    .login-content
-      h1
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
-        text-align: center
-      .el-form
-        width: 240px
-        margin: 0 auto
-        .el-form-item
-          .el-button
-            width: 240px
-
-    .login-footer
-      margin: 20px 0
-      p
-        text-align: center
-        a
-          margin-left: 5px
+      margin-top 100px
 
 </style>
