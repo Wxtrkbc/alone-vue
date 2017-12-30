@@ -7,7 +7,7 @@
         el-form-item
           el-input(v-model="registerForm.contact" placeholder="Mobile Number or Email")
         el-form-item
-          el-input(v-model="registerForm.username" placeholder="Username")
+          el-input(v-model="registerForm.name" placeholder="Username")
         el-form-item
           el-input(type="password" v-model="registerForm.password" placeholder="Password")
         el-form-item
@@ -21,24 +21,38 @@
 
 
 <script>
-  import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item";
-  import ElInput from "../../../node_modules/element-ui/packages/input/src/input";
+  import {mapActions} from 'vuex'
+
   export default {
-    components: {ElInput, ElFormItem},
     data(){
-        return{
-            registerForm:{
-                contact: "",
-                username: "",
-                password: ""
-            }
+      return {
+        registerForm: {
+          contact: "",
+          name: "",
+          password: ""
         }
+      }
     },
 
     methods: {
-        submit(form) {
 
+      isPhone(value){
+        return value.indexOf('@') <= 0
+      },
+
+      ...mapActions([
+        'register',
+      ]),
+
+      submit(form) {
+        if(this.isPhone(form.contact)){
+            form.phone = form.contact
+        } else {
+          form.email = form.contact
         }
+        delete form.contact;
+        this.register(form)
+      }
     }
 
   }
@@ -50,7 +64,7 @@
   @import "../../common/account.styl"
 
   .register
-    margin-top :50px
+    margin-top: 50px
 
     .register-body
       h2
@@ -67,6 +81,6 @@
         line-height 18px
         font-size 14px
         color #999
-  
+
 
 </style>

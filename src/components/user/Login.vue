@@ -36,13 +36,15 @@
     },
 
     methods: {
+
       ...mapActions([
         'login',
       ]),
 
       submit(loginForm) {
         this.login(loginForm)
-      }
+      },
+
     },
   }
 

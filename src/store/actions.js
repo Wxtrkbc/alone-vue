@@ -9,13 +9,29 @@ export const login = ({ commit, state }, form) => {
 	.then(function({ status, data }){
 		commit(types.UPDATE_USERINFO, data);
 	})
-	.catch(function(status, data){
+	.catch(function(err){
 		var message;
-		if (status == 401){
+		if (err.status === 401){
 			message = "username or password error!";
 		} else {
 			message = "Internal Server Error";
 		}
 		return eventBus.$emit('errorMessage', message)
 	})
+}
+
+export const register = ({ commit, state }, form) => {
+  fetch.register(form)
+    .then(function({ status, data }){
+      commit(types.UPDATE_USERINFO, data);
+    })
+    .catch(function(err){
+      var message;
+      if (err.status === 400){
+        message = "Phone number or email seems not valid";
+      } else {
+        message = "Internal Server Error";
+      }
+      return eventBus.$emit('errorMessage', message)
+    })
 }
