@@ -3,13 +3,13 @@
     .login-body
       .login-content(class="account-border")
         h1(class="logo") Alone
-        el-form(ref="form", :model="loginForm", class="account-form")
-          el-form-item
+        el-form(ref="loginForm", :model="loginForm", class="account-form", :rules="rules")
+          el-form-item(prop="name")
             el-input(v-model="loginForm.name" placeholder="Username or phone number")
-          el-form-item
+          el-form-item(prop="password")
             el-input(type="password" v-model="loginForm.password" placeholder="Password")
           el-form-item
-            el-button(@click="submit(loginForm)" type="primary") Log in
+            el-button(@click="submit('loginForm')" type="primary") Log in
           el-form-item
             el-button(type="text") Forgot password?
 
@@ -31,8 +31,18 @@
         loginForm: {
           name: "",
           password: "",
+        },
+        rules: {
+          name: [
+            { required: true, message: 'Please enter username', trigger: 'blur' }
+          ],
+
+          password: [
+            { required: true, message: 'Please enter password', trigger: 'blur' }
+          ]
         }
       }
+
     },
 
     methods: {
@@ -42,7 +52,14 @@
       ]),
 
       submit(loginForm) {
-        this.login(loginForm)
+        this.$refs[loginForm].validate((valid) => {
+            if(valid){
+              this.login(this.loginForm)
+            } else {
+              return false
+            }
+        })
+
       },
 
     },

@@ -28,7 +28,7 @@
 
       var validateContact = (rule, value, callback) => {
           if (this.isPhone(value)){
-            if (value.match(/^(\+\d+)?\d+$/)) {
+            if (value.match(/^(\+\d+){1}\d+$/)) {
               callback()
             } else {
               callback(new Error("Phone number seems not valid"))
