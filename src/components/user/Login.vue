@@ -52,9 +52,9 @@
 
 
 <style lang="stylus">
-    @import "../../common/account.styl"
+  @import "../../common/account.styl"
 
-    .login-body
-      margin-top 100px
+  .login-body
+    margin-top 100px
 
 </style>

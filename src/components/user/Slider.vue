@@ -46,29 +46,29 @@
 
 <style lang="stylus">
   .box
-    background-image: url('/static/picture/f82c2ede4ccb.png')
-    background-size: 454px 618px
-    height: 618px
-    width: 454px
+    background-image url('/static/picture/f82c2ede4ccb.png')
+    background-size 454px 618px
+    height 618px
+    width 454px
 
     .picture
-      margin: 99px 0 0 151px
+      margin 99px 0 0 151px
       img
-        position: absolute
+        position absolute
 
     .images-enter-active
-      transform: translateX(0)
-      transition: all 1.5s ease
+      transform translateX(0)
+      transition all 1.5s ease
 
     .image-leave-active
-      transform: translateX(-100%)
-      transition: all 1.5s ease
+      transform translateX(-100%)
+      transition all 1.5s ease
 
     .image-enter
-      transform: translateX(100%)
+      transform translateX(100%)
 
     .image-leave
-      transform: translateX(0);
+      transform translateX(0);
 
 
 </style>
