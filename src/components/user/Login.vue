@@ -55,10 +55,12 @@
         this.$refs[loginForm].validate((valid) => {
             if(valid){
               this.login(this.loginForm)
+              this.$router.push({'name': 'home'})
             } else {
               return false
             }
         })
+
 
       },
 

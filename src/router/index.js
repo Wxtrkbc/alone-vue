@@ -10,20 +10,21 @@ import Register from '../components/user/Register'
 
 Vue.use(Router)
 
-function requireLogin(to, from, next){
-	if(typeof(store.state.userInfo.uuid) != 'undefined') {
-		next()
-	} else {
-		next('/account')
-	}
-}
+// function requireLogin(to, from, next){
+// 	if(typeof(store.state.userInfo.uuid) != 'undefined') {
+// 		next()
+// 	} else {
+// 		next('/account')
+// 	}
+// }
 
 export default new Router({
   routes: [
     {
       path: '/',
+      name:'home',
       component: Home,
-      beforeEnter: requireLogin,
+      // beforeEnter: requireLogin,
   	},{
       path: '/account',
       component: Account,

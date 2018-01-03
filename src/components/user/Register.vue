@@ -85,7 +85,6 @@
               } else {
                 this.registerForm.email = this.registerForm.contact
               }
-              delete this.registerForm.contact
               this.register(this.registerForm)
             } else {
                 return false

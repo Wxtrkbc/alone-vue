@@ -1,6 +1,5 @@
 <template lang="pug">
 	.home
-		h1 {{msg}}
 		main-header
 		main-footer
 </template>
