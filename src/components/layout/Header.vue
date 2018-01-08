@@ -43,6 +43,7 @@
     align-items center
     justify-content space-around
     background-color #fff
+    border-bottom 1px solid #efefef
 
     .header-left
       display flex
