@@ -9,8 +9,11 @@
         .body
           img(:src="item.urls[0]")
         .footer
+          section(class="icon")
+            icon(name="heart-o" scale='1.5' class="like")
+            icon(name="comment-o" scale='1.6')
           section
-          .likes {{ item.likes }} likes
+            .likes {{ item.likes }} likes
           .brife {{ item.name }} {{ item.brief }}
 
     .story
@@ -74,6 +77,20 @@
             border-radius 50%
             cursor pointer
             margin 0 10px
+
+
+        .footer
+          .icon
+            display flex
+            align-items  center
+            margin-left 10px
+            .like
+              margin 5px 25px 0 0
+          section
+            margin 10px 10px
+            font-weight 600
+            color #262626
+
 
     .story
       width 300px
