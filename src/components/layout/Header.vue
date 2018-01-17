@@ -19,10 +19,8 @@
 </template>
 
 <script>
-  import Icon from "../../../node_modules/vue-awesome/components/Icon";
-  import ElButton from "../../../node_modules/element-ui/packages/button/src/button";
   export default{
-    components: {ElButton, Icon}, name: 'header',
+    name: 'header',
     data () {
       return {
           show: true

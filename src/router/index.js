@@ -6,6 +6,7 @@ import store from '../store'
 import Login from '../components/user/Login'
 import Account from '../components/user/Account'
 import Register from '../components/user/Register'
+// import { Login, Account, Register } from '../components/user'
 import Explore from '../components/Explore.vue'
 import Profile from '../components/Profile.vue'
 import Ins from '../components/Ins.vue'
@@ -24,6 +25,7 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name:'home',
       component: Home,
       beforeEnter: requireLogin,
       children:[

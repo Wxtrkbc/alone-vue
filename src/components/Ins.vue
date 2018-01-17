@@ -3,8 +3,8 @@
     .ins
       article(v-for="item in ins")
         .header
-          img(:src="item.avatar")
-          p {{ item.name }}
+          img(:src="item.owner.avatar")
+          p {{ item.owner.name }}
 
         .body
           img(:src="item.urls[0]")
@@ -13,8 +13,8 @@
             icon(name="heart-o" scale='1.5' class="like")
             icon(name="comment-o" scale='1.6')
           section
-            .likes {{ item.likes }} likes
-          .brife {{ item.name }} {{ item.brief }}
+            .likes {{ item.likes_count }} likes
+          .brife {{ item.owner.name }} {{ item.brief }}
 
     .story
 
@@ -22,27 +22,57 @@
 </template>
 
 <script>
+  import { getFollowingIns } from '../common/fetch.js'
+  import eventBus from '../common/eventbus'
+
   export default {
+
     data () {
       return {
         ins: [
-          {
-            'name': 'steveaoki',
-            'avatar': '/static/ins/steveakio.jpg',
-            'urls': ['/static/ins/steve.jpg',],
-            'comments': [],
-            'likes': 7097,
-            'brief': 'Should we go up or down'
-          }, {
-            'name': 'steveaoki',
-            'avatar': '/static/ins/steveakio.jpg',
-            'urls': ['/static/ins/steve.jpg',],
-            'comments': [],
-            'likes': 7097,
-            'brief': 'Should we go up or down'
-          }]
+//          {
+//            "uuid": "72f24a9b-4246-43cd-a916-88664b2c27f4",
+//            "owner": {
+//              "uuid": "afa6b1fc-26bf-4f38-82d8-ff5b84ae5e1b",
+//              "name": "steveaoki",
+//              "avatar": "/static/ins/steveakio.jpg"
+//            },
+//            "tags": [],
+//            "urls": [
+//              "/static/ins/steve.jpg",
+//            ],
+//            "created_at": "2018-01-13T06:07:45Z",
+//            "brief": "Hello, jump",
+//            "type": "PICTURE-INS",
+//            "likes_count": 23
+//          },
+//          {
+//            'name': 'steveaoki',
+//            'avatar': '/static/ins/steveakio.jpg',
+//            'urls': ['/static/ins/steve.jpg',],
+//            'comments': [],
+//            'likes': 7097,
+//            'brief': 'Should we go up or down'
+//          }, {
+//            'name': 'steveaoki',
+//            'avatar': '/static/ins/steveakio.jpg',
+//            'urls': ['/static/ins/steve.jpg',],
+//            'comments': [],
+//            'likes': 7097,
+//            'brief': 'Should we go up or down'
+//          }
+          ]
       }
     },
+
+    mounted(){
+      getFollowingIns().then(({ status, data }) => this.ins = data.result)
+        .catch((err) => eventBus.$emit('errorMessage', 'Get following ins error'))
+    },
+
+    methods: {
+
+    }
   }
 </script>
 

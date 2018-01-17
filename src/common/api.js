@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-var $ = {}
+var $ = {};
 
 $.ajax = function (url, options) {
 
@@ -24,7 +24,7 @@ $.ajax = function (url, options) {
         let result = {
           status: xhr.status,
           data: data
-        }
+        };
 
         if (xhr.status >= 200 && xhr.status < 300) {
           return resolve(result)
@@ -32,24 +32,23 @@ $.ajax = function (url, options) {
         return reject(result)
       }
 
-    }
+    };
 
     if (options.params) {
       let params = Object.keys(options.params).map((key) => key + '=' + options.params[key]).join('&');
       url = url + '?' + params;
     }
-
     xhr.open(options.method, url, false);
 
 
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8')
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     if (options.headers) {
       for (let key in options.headers) {
         xhr.setRequestHeader(key, options.headers[key]);
       }
     }
     if (options.auth) {
-      let csrftoken = Cookies.get('csrftoken')
+      let csrftoken = Cookies.get('csrftoken');
       xhr.setRequestHeader('X-CSRFToken', csrftoken)
     }
 
@@ -66,7 +65,7 @@ $.get = (url, pararms, auth = false) => {
     pararms: pararms,
     auth: auth
   })
-}
+};
 
 $.post = (url, body, auth = true) => {
   return $.ajax(url, {
@@ -74,7 +73,7 @@ $.post = (url, body, auth = true) => {
     body: body,
     auth: auth
   })
-}
+};
 
 $.put = (url, body, auth = true) => {
   return $.ajax(url, {
@@ -82,7 +81,7 @@ $.put = (url, body, auth = true) => {
     body: body,
     auth: auth
   })
-}
+};
 
 $.patch = (url, body, auth = true) => {
   return $.ajax(url, {
@@ -90,7 +89,7 @@ $.patch = (url, body, auth = true) => {
     body: body,
     auth: auth
   })
-}
+};
 
 $.delete = (url, body, auth = true) => {
   return $.ajax(url, {
@@ -98,9 +97,9 @@ $.delete = (url, body, auth = true) => {
     body: body,
     auth: auth
   })
-}
+};
 
-window.$ = $
+window.$ = $;
 
 export {
   $
