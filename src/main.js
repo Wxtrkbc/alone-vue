@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import { loginHock } from './common/utils'
 import 'vue-awesome/icons'
 // import 'font-awesome/scss/font-awesome.scss';
 import Icon from 'vue-awesome/components/Icon'
@@ -12,10 +12,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 
-Vue.config.productionTip = false
-Vue.component('icon', Icon)
-Vue.use(ElementUI)
+Vue.config.productionTip = false;
+Vue.component('icon', Icon);
+Vue.use(ElementUI);
 
+loginHock();
 
 /* eslint-disable no-new */
 new Vue({
@@ -23,4 +24,4 @@ new Vue({
   store,
   router,
   render: h => h(App)
-})
+});

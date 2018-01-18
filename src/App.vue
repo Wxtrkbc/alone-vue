@@ -9,7 +9,7 @@
 <script>
 
   import eventBus from './common/eventbus'
-  
+
   export default {
     name: 'app',
 
@@ -20,7 +20,11 @@
 
     },
 
-    data:() => {}
+    data() {
+        return {
+
+        }
+    }
   }
 
 </script>

@@ -25,7 +25,7 @@ export const register = ({ commit, state }, form) => {
   fetch.register(form)
     .then(function({ status, data }){
       commit(types.UPDATE_USERINFO, data);
-      setInfoInLocal(date);
+      setInfoInLocal(data);
     })
     .catch(function(err){
       var message;
@@ -39,3 +39,6 @@ export const register = ({ commit, state }, form) => {
 };
 
 
+export const updateUserInfo = ({ commit }, data) => {
+  commit(types.UPDATE_USERINFO, data)
+}

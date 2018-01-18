@@ -6,10 +6,12 @@ const url = baseUrl + version;
 
 const login = (form) => $.post(url + '/users/login', form);
 const register = (form) => $.post(url + '/users', form);
-const getFollowingIns = (params) => $.get(url + '/ins', params, true);
+const getFollowingIns = (params) => $.get(url + '/ins', params);
+const getUserInfo = (uuid) => $.get(url + '/' + uuid, undefined);
 
 export {
   login,
   register,
-  getFollowingIns
+  getFollowingIns,
+  getUserInfo
 };

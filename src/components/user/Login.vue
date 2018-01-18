@@ -54,8 +54,8 @@
       submit(loginForm) {
         this.$refs[loginForm].validate((valid) => {
             if(valid){
-              this.login(this.loginForm)
-              this.$router.push({'name': 'home'})
+              this.login(this.loginForm);
+              this.$router.push('/ins')
             } else {
               return false
             }

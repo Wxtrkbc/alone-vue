@@ -5,7 +5,11 @@
 <script>
   export default{
     name: 'footer',
-     data:() => {}
+    data() {
+      return {
+
+      }
+    }
    }
 
 </script>

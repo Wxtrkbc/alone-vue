@@ -38,7 +38,9 @@ $.ajax = function (url, options) {
       let params = Object.keys(options.params).map((key) => key + '=' + options.params[key]).join('&');
       url = url + '?' + params;
     }
-    xhr.open(options.method, url, false);
+    xhr.open(options.method, url, true);
+
+    xhr.withCredentials = true;
 
 
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -59,10 +61,10 @@ $.ajax = function (url, options) {
 };
 
 
-$.get = (url, pararms, auth = false) => {
+$.get = (url, params = null, auth = false) => {
   return $.ajax(url, {
     method: 'get',
-    pararms: pararms,
+    params: params,
     auth: auth
   })
 };
