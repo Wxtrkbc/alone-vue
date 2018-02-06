@@ -35,6 +35,10 @@ export default new Router({
         {
           path: 'ins',
           component: Ins
+        },
+        {
+          path: 'profile',
+          component: Profile
         }
       ]
   	},{

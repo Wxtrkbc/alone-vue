@@ -1,5 +1,5 @@
 <template lang="pug">
-  p {{ profile }}
+  p {{ userInfo }}
 </template>
 
 <script>

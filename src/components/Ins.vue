@@ -14,71 +14,77 @@
             icon(name="comment-o" scale='1.6')
           section
             .likes {{ item.likes_count }} likes
-          .brife {{ item.owner.name }} {{ item.brief }}
+            ul
+              li
+                a(class="load") Load more comments
+              li
+                router-link(to="/profile") {{ item.owner.name }}
+                span {{ item.brief }}
+              li(v-for="comment in item.comments  ")
+                router-link(to="/profile") {{ comment.poster.name }}
+                span {{ comment.content }}
+          section(class="comment")
+            textarea(v-model="comment" placeholder="Add a comment...")
+
 
     .story
+      .profile
+        router-link(to="/profile")
+          img(:src="userInfo.avatar")
+        router-link(to="/profile")
+          span {{ userInfo.name }}
+
+
+
 
 
 </template>
 
 <script>
-  import { getFollowingIns } from '../common/fetch.js'
+  import {getFollowingIns} from '../common/fetch.js'
   import eventBus from '../common/eventbus'
+  import {mapGetters} from 'vuex'
 
   export default {
 
     data () {
       return {
-        ins: [
-//          {
-//            "uuid": "72f24a9b-4246-43cd-a916-88664b2c27f4",
-//            "owner": {
-//              "uuid": "afa6b1fc-26bf-4f38-82d8-ff5b84ae5e1b",
-//              "name": "steveaoki",
-//              "avatar": "/static/ins/steveakio.jpg"
-//            },
-//            "tags": [],
-//            "urls": [
-//              "/static/ins/steve.jpg",
-//            ],
-//            "created_at": "2018-01-13T06:07:45Z",
-//            "brief": "Hello, jump",
-//            "type": "PICTURE-INS",
-//            "likes_count": 23
-//          },
-//          {
-//            'name': 'steveaoki',
-//            'avatar': '/static/ins/steveakio.jpg',
-//            'urls': ['/static/ins/steve.jpg',],
-//            'comments': [],
-//            'likes': 7097,
-//            'brief': 'Should we go up or down'
-//          }, {
-//            'name': 'steveaoki',
-//            'avatar': '/static/ins/steveakio.jpg',
-//            'urls': ['/static/ins/steve.jpg',],
-//            'comments': [],
-//            'likes': 7097,
-//            'brief': 'Should we go up or down'
-//          }
-          ]
+        ins: []
       }
     },
 
     mounted(){
-      getFollowingIns().then(({ status, data }) => this.ins = data.result)
-        .catch((err) => eventBus.$emit('errorMessage', 'Get following ins error'))
+      this.initData()
+    },
+
+    computed: {
+      ...mapGetters([
+        'userInfo',
+      ])
     },
 
     methods: {
+      getFollowingIns(){
+        return getFollowingIns().then(({status, data}) => data)
+          .catch((err) => eventBus.$emit('errorMessage', 'Get following ins error'))
+      },
 
+      initData(){
+        this.getFollowingIns().then(data => {
+          this.ins = data.results
+        })
+      }
     }
   }
 </script>
 
 
 <style lang="stylus">
+
   .container
+    font-family -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif
+    font-size 14px
+    line-height 18px
     display flex
     justify-content center
     align-items flex-start
@@ -107,23 +113,70 @@
             border-radius 50%
             cursor pointer
             margin 0 10px
-
+        .body
+          img
+            max-width 640px
 
         .footer
           .icon
             display flex
-            align-items  center
+            align-items center
             margin-left 10px
             .like
               margin 5px 25px 0 0
           section
             margin 10px 10px
-            font-weight 600
-            color #262626
-
+            .likes
+              font-weight 600
+              color: #262626
+            .load
+              cursor pointer
+              color #003569
+            ul
+              margin-top 4px
+              list-style none
+              padding-left 0
+              li
+                margin-top 2px
+            a
+              text-decoration none
+              font-weight 600
+              margin-right 5px
+              color: #262626
+          .comment
+            border-top 1px solid #efefef
+            padding  16px 0
+            margin-top 0
+            margin-bottom 0
+            textarea
+              background 0 0
+              border none
+              height 18px
+              resize none
+              outline none
+              font-size inherit
+              width 620px
 
     .story
       width 300px
       height 300px
       background-color lightgoldenrodyellow
+
+      a
+        text-decoration none
+      .profile
+        display flex
+        img
+          width 60px
+          height 60px
+          border-radius 50%
+          display block
+        span
+          display block
+          color #262626
+          font-weight 600
+          margin-left 14px
+          margin-top 14px
+
+
 </style>
