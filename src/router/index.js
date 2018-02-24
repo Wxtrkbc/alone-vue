@@ -58,6 +58,15 @@ export default new Router({
           component: Register
         }
       ]
-  	}
+  	},{
+      path:'/users/:uuid', component:Profile,
+      children: [
+        {
+          name:'profile',
+          path: 'profile',
+          component: Profile
+        }
+      ]
+    }
   ]
 })

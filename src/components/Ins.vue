@@ -18,10 +18,10 @@
               li
                 a(class="load") Load more comments
               li
-                router-link(to="/profile") {{ item.owner.name }}
+                router-link(:to=`{ name: 'profile', params:{ uuid:item.owner.uuid }}`) {{ item.owner.name }}
                 span {{ item.brief }}
               li(v-for="comment in item.comments  ")
-                router-link(to="/profile") {{ comment.poster.name }}
+                router-link(:to=`{ name: 'profile', params:{ uuid:comment.poster.uuid }}`) {{ comment.poster.name }}
                 span {{ comment.content }}
           section(class="comment")
             textarea(v-model="comment" placeholder="Add a comment...")
@@ -29,19 +29,27 @@
 
     .story
       .profile
-        router-link(to="/profile")
+        router-link(:to=`{ name: 'profile', params:{ uuid: userInfo.uuid }}`)
           img(:src="userInfo.avatar")
-        router-link(to="/profile")
+        router-link(:to=`{ name: 'profile', params:{ uuid: userInfo.uuid }}`)
           span {{ userInfo.name }}
-
-
-
-
+      hr
+      section
+        .title
+           span(class="stories") Stories
+           span Watch All
+        .total
+          div(v-for="item in following")
+            router-link(:to=`{ name: 'profile', params:{ uuid: item.uuid }}`)
+              .avatar
+                img(:src="item.avatar")
+                span {{ item.name }}
+      hr
 
 </template>
 
 <script>
-  import {getFollowingIns} from '../common/fetch.js'
+  import {getFollowingIns, getFollowing} from '../common/fetch.js'
   import eventBus from '../common/eventbus'
   import {mapGetters} from 'vuex'
 
@@ -49,7 +57,9 @@
 
     data () {
       return {
-        ins: []
+        ins: [],
+        comment: '',
+        following: []
       }
     },
 
@@ -69,9 +79,17 @@
           .catch((err) => eventBus.$emit('errorMessage', 'Get following ins error'))
       },
 
+      getFollowing(){
+        return getFollowing(this.userInfo.uuid).then(({status, data}) => data)
+          .catch((err) => eventBus.$emit('errorMessage', 'Get following  error'))
+      },
+
       initData(){
         this.getFollowingIns().then(data => {
           this.ins = data.results
+        });
+        this.getFollowing().then(data => {
+          this.following = data.results
         })
       }
     }
@@ -82,7 +100,7 @@
 <style lang="stylus">
 
   .container
-    font-family -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif
+    font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
     font-size 14px
     line-height 18px
     display flex
@@ -145,7 +163,7 @@
               color: #262626
           .comment
             border-top 1px solid #efefef
-            padding  16px 0
+            padding 16px 0
             margin-top 0
             margin-bottom 0
             textarea
@@ -160,7 +178,14 @@
     .story
       width 300px
       height 300px
-      background-color lightgoldenrodyellow
+      margin-left 30px
+
+      hr
+        display block
+        border none
+        border-top 1px solid #efefef
+        height 1px
+        margin 12px 0
 
       a
         text-decoration none
@@ -177,6 +202,33 @@
           font-weight 600
           margin-left 14px
           margin-top 14px
+      section
+        .title
+          display flex
+          justify-content space-between
+          .stories
+            color #999
+            font-size 14px
+            line-height 18px
 
-
+        .total
+          margin-top 10px
+          height 240px
+          overflow-x hidden
+          overflow-y auo
+          div
+            margin-top 10px
+          .avatar
+            display flex
+            align-items center
+            img
+              width 50px
+              height 50px
+              border-radius 50%
+              border 2px solid #d63576
+              margin-right 10px
+            span
+              color #262626
+              font-size 16px
+              font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
 </style>
