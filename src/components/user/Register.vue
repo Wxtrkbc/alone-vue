@@ -47,7 +47,7 @@
         registerForm: {
           contact: "",
           name: "",
-          password: ""
+          password: "",
         },
 
         rules: {
@@ -85,7 +85,9 @@
               } else {
                 this.registerForm.email = this.registerForm.contact
               }
-              this.register(this.registerForm)
+              delete this.registerForm['contact'];
+              this.register(this.registerForm);
+              this.$router.push({path:'/'})
             } else {
                 return false
             }

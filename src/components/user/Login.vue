@@ -55,7 +55,7 @@
         this.$refs[loginForm].validate((valid) => {
             if(valid){
               this.login(this.loginForm);
-              this.$router.push('/ins')
+              this.$router.push({path: '/ins'})
             } else {
               return false
             }

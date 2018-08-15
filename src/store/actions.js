@@ -8,6 +8,7 @@ export const login = ({ commit, state }, form) => {
 	fetch.login(form)
 	.then(function({ status, data }){
 		commit(types.UPDATE_USERINFO, data);
+    commit(types.UPDATE_LOGIN_STATUS, true);
 		setInfoInLocal(data)
 	})
 	.catch(function(err){
@@ -25,6 +26,7 @@ export const register = ({ commit, state }, form) => {
   fetch.register(form)
     .then(function({ status, data }){
       commit(types.UPDATE_USERINFO, data);
+      commit(types.UPDATE_LOGIN_STATUS, true);
       setInfoInLocal(data);
     })
     .catch(function(err){
