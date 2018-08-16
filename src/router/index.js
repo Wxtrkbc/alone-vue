@@ -44,6 +44,13 @@ export default new Router({
   	},{
       path: '/account',
       component: Account,
+      beforeEnter: (to, from, next) => {
+        if(typeof(store.state.userInfo.uuid) === 'undefined') {
+          next()
+        } else {
+          next('/')
+        }
+      },
       children:[
         {
           path: '',
