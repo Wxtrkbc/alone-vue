@@ -10,6 +10,7 @@ const getFollowingIns = (params) => $.get(url + '/ins/', params);
 const getUserInfo = (uuid) => $.get(url + '/users/' + uuid+'/', undefined);
 const getFollowers = (uuid)=> $.get(url + '/users/' + uuid +'/followers/');
 const getFollowing = (uuid)=> $.get(url + '/users/' + uuid +'/following/');
+const getTempCosToken = () => $.get(url + '/temp_cos_token');
 
 export {
   login,
@@ -17,5 +18,6 @@ export {
   getFollowingIns,
   getUserInfo,
   getFollowers,
-  getFollowing
+  getFollowing,
+  getTempCosToken
 };
