@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import {getFollowingIns, getFollowing} from '../common/fetch.js'
+  import {getFollowingIns, getFollowing} from '../common/fetch'
   import eventBus from '../common/eventbus'
   import {mapGetters} from 'vuex'
 

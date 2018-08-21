@@ -5,8 +5,7 @@
 import store from '../store'
 import router from '../router'
 import COS from 'cos-js-sdk-v5'
-import {getTempCosToken} from './fetch'
-import eventBus from '../common/eventbus'
+import {URL} from './fetch'
 
 const day = 60 * 60 *24;
 
@@ -57,21 +56,23 @@ function getTempCos() {
     return new COS({
     FileParallelLimit: 5,
     getAuthorization: function (options, callback) {
-      // let data = {
-      //   "credentials": {
-      //     "sessionToken": "52641ddf39911142050f416afb3eaef962635be130001",
-      //     "tmpSecretId": "AKIDWFPouj0aS0NUdWEOv5qljJwXMEg8NVHS",
-      //     "tmpSecretKey": "RE3kEr8OvWY34pg1d1HPOExR1iOnheE4"
-      //   }, "expiredTime": 1534562396
-      // }
-      var token = getTempCosToken().then(({status, data}) => data).catch((err) => eventBus.$emit('errorMessage', 'Get temp token error'));
-      debugger;
-      callback({
-        TmpSecretId: token.credentials && token.credentials.tmpSecretId,
-        TmpSecretKey: token.credentials && token.credentials.tmpSecretKey,
-        XCosSecurityToken: token.credentials && token.credentials.sessionToken,
-        ExpiredTime: token.expiredTime,
-      })
+      var url = URL + '/temp_cos_token';
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      xhr.open('GET', url, true);
+      xhr.onload = function (e) {
+        try {
+          var data = JSON.parse(e.target.responseText);
+        } catch (e) {
+        }
+        callback({
+          TmpSecretId: data.credentials && data.credentials.tmpSecretId,
+          TmpSecretKey: data.credentials && data.credentials.tmpSecretKey,
+          XCosSecurityToken: data.credentials && data.credentials.sessionToken,
+          ExpiredTime: data.expiredTime,
+        });
+      };
+      xhr.send();
     }
 
   })
