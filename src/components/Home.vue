@@ -38,6 +38,7 @@
       MainHeader: Header,
       MainFooter: Footer,
     },
+
     methods: {
       handleRemove(file, fileList) {
       },

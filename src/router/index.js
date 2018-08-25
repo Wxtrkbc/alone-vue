@@ -37,9 +37,11 @@ export default new Router({
           component: Ins
         },
         {
-          path: 'profile',
+          name:'profile',
+          path: '/users/:uuid/profile',
           component: Profile
         }
+
       ]
   	},{
       path: '/account',
@@ -65,15 +67,16 @@ export default new Router({
           component: Register
         }
       ]
-  	},{
-      path:'/users/:uuid', component:Profile,
-      children: [
-        {
-          name:'profile',
-          path: 'profile',
-          component: Profile
-        }
-      ]
-    }
+  	},
+    // {
+    //   path:'/users/:uuid', component:Profile,
+    //   children: [
+    //     {
+    //       name:'profile',
+    //       path: 'profile',
+    //       component: Profile
+    //     }
+    //   ]
+    // }
   ]
 })

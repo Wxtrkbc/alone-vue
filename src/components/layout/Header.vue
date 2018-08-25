@@ -14,7 +14,8 @@
     .header-right
       icon(name="compass" scale="1.5")
       icon(name="heart-o" scale="1.5")
-      icon(name="user-o" scale="1.5")
+      router-link(:to=`{ name: 'profile', params:{ uuid:userId }}`)
+        icon(name="user-o" scale="1.5")
 
 </template>
 
@@ -24,6 +25,11 @@
     data () {
       return {
           show: true
+      }
+    },
+    computed:{
+      userId(){
+        return this.$store.state.userInfo.uuid
       }
     },
     methods:{

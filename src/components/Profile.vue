@@ -1,5 +1,6 @@
 <template lang="pug">
-  p {{ profile }}
+  .container
+    .ins
 </template>
 
 <script>
@@ -45,5 +46,8 @@
 
 
 <style lang="stylus">
+  .container
+    display flex
+    justify-content center
 
 </style>
